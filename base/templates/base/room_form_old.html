@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <div>
+        <!-- The action attribute specifies where to send the form-data when a form is submitted. Syntac: <form action="URL">. -->
+        <form method="post" action="">
+            <!-- In any template that uses a POST form, use the csrf_token tag inside the <form> element if the form is for an internal URL. This should not be done for POST forms that target external URLs, since that would cause the CSRF token to be leaked, leading to a vulnerability. -->
+            {% csrf_token %}
+            {% comment %} The .as_p is an inbuilt method that wraps every field in the form in a paragraph tag, so they display nicely {% endcomment %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+{% endblock %}

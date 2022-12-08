@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <div>
+        <!-- The action attribute specifies where to send the form-data when a form is submitted. Syntac: <form action="URL">. -->
+        <form method="post" action="">
+            <!-- In any template that uses a POST form, use the csrf_token tag inside the <form> element if the form is for an internal URL. This should not be done for POST forms that target external URLs, since that would cause the CSRF token to be leaked, leading to a vulnerability. -->
+            {% csrf_token %}
+            <p>Are you sure you want to delete "{{ obj }}"?</p>
+            <!-- This will send the users back to the previous page where they came from. -->
+            <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
+            <input type="submit" value="Confirm">
+        </form>
+    </div>
+
+{% endblock %}
